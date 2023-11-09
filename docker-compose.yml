@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  cdw:
+    image: gpdb7-multinode-cluster/gpdb-systemd-image
+    platform: linux/amd64
+    privileged: true
+    cgroup: host
+    restart: always
+    hostname: cdw
+    tty: true
+    networks:
+      - the-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - gpdb-src-volume:/gpdb-src
+      - gpdb-scripts-volume:/gpdb-scripts
+      - gpdb-rpm-volume:/gpdb-rpm
+  sdw1:
+    hostname: sdw1
+    image: gpdb7-multinode-cluster/gpdb-systemd-image
+    platform: linux/amd64
+    privileged: true
+    cgroup: host
+    restart: always
+    tty: true
+    networks:
+      - the-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - gpdb-src-volume:/gpdb-src
+      - gpdb-scripts-volume:/gpdb-scripts
+      - gpdb-rpm-volume:/gpdb-rpm
+  sdw2:
+    hostname: sdw2
+    image: gpdb7-multinode-cluster/gpdb-systemd-image
+    platform: linux/amd64
+    privileged: true
+    cgroup: host
+    restart: always
+    tty: true
+    networks:
+      - the-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - gpdb-src-volume:/gpdb-src
+      - gpdb-scripts-volume:/gpdb-scripts
+      - gpdb-rpm-volume:/gpdb-rpm
+  sdw3:
+    hostname: sdw3
+    image: gpdb7-multinode-cluster/gpdb-systemd-image
+    platform: linux/amd64
+    privileged: true
+    cgroup: host
+    restart: always
+    tty: true
+    networks:
+      - the-network
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - gpdb-src-volume:/gpdb-src
+      - gpdb-scripts-volume:/gpdb-scripts
+      - gpdb-rpm-volume:/gpdb-rpm
+
+networks:
+  the-network:
+
+volumes:
+  gpdb-src-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: ${GPDB7_SRC}
+
+  gpdb-scripts-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: ${PWD}/scripts
+  
+  gpdb-rpm-volume:
+    driver_opts:
+      o: bind
+      type: none
+      device: ${GPDB_RPM:-/tmp}
