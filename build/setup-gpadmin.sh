@@ -134,10 +134,18 @@ workaround_before_concourse_stops_stripping_suid_bits() {
   chmod u+s $(which ping)
 }
 
+setup_golang_path() {
+  echo "export GOPATH=\$HOME/go" >> ~gpadmin/.bashrc
+  echo "export PATH=/usr/local/go/bin:\$PATH" >> ~gpadmin/.bashrc
+  echo "export GOPATH=\$HOME/go" >> ~/.bashrc
+  echo "export PATH=/usr/local/go/bin:\$PATH" >> ~/.bashrc
+}
+
 _main() {
   TEST_OS=$(determine_os)
   setup_gpadmin_user
   setup_sshd
+  setup_golang_path
   workaround_before_concourse_stops_stripping_suid_bits
 }
 
