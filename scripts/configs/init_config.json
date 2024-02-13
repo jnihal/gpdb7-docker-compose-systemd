@@ -1,5 +1,4 @@
 {
-    "cluster-name":"GPDB",
     "encoding":"Unicode",
     "hba-hostnames":true,
     "su-password":"gparray",

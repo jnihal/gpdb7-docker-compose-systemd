@@ -17,4 +17,14 @@ source /usr/local/greenplum-db/greenplum_path.sh
 export COORDINATOR_DATA_DIRECTORY=/data/primary/gpseg-1
 export PGPORT=7000
 
+install_gp() {
+# Compile gp binary
+pushd /gpdb-src/gpMgmt/bin/go-tools
+make build
+popd
+
+# Install gp binary on all hosts
+gpssh -f /gpdb-scripts/configs/hostfile 'pushd /gpdb-src/gpMgmt/bin/go-tools; make install'
+}
+
 EOF

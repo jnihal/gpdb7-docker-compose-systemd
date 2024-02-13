@@ -3,7 +3,6 @@ version: '3.8'
 services:
   cdw:
     image: gpdb7-multinode-cluster/gpdb-systemd-image
-    platform: linux/amd64
     privileged: true
     cgroup: host
     restart: always
@@ -19,7 +18,6 @@ services:
   sdw1:
     hostname: sdw1
     image: gpdb7-multinode-cluster/gpdb-systemd-image
-    platform: linux/amd64
     privileged: true
     cgroup: host
     restart: always
@@ -34,7 +32,6 @@ services:
   sdw2:
     hostname: sdw2
     image: gpdb7-multinode-cluster/gpdb-systemd-image
-    platform: linux/amd64
     privileged: true
     cgroup: host
     restart: always
@@ -49,7 +46,6 @@ services:
   sdw3:
     hostname: sdw3
     image: gpdb7-multinode-cluster/gpdb-systemd-image
-    platform: linux/amd64
     privileged: true
     cgroup: host
     restart: always

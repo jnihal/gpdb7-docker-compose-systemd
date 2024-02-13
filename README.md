@@ -7,6 +7,8 @@ insufficient. The docker compose GPDB 7 cluster is ephemeral so the
 cluster can be discarded and rebuilt for quick and clean testing. The
 OS of choice here is Rocky Linux 8.
 
+Checkout the `docker_multi_nic` branch to setup a cluster with multiple network interfaces for each host.
+
 ## Build the image
 
 We need to build a local docker image that will be used for each

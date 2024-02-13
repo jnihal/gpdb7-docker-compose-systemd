@@ -1,4 +1,6 @@
-FROM gcr.io/data-gpdb-public-images/gpdb7-rocky8-build
+FROM gcr.io/data-gpdb-public-images/gpdb7-rocky8-test-multiarch
+
+# To enable systemd on docker
 ENV container docker
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
