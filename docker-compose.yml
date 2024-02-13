@@ -1,5 +1,6 @@
 version: '3.8'
 
+
 services:
   cdw:
     image: gpdb7-multinode-cluster/gpdb-systemd-image
@@ -9,12 +10,23 @@ services:
     hostname: cdw
     tty: true
     networks:
-      - the-network
+      net1:
+        ipv4_address: 172.28.0.10
+      net2:
+        ipv4_address: 172.29.0.10
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - gpdb-src-volume:/gpdb-src
       - gpdb-scripts-volume:/gpdb-scripts
       - gpdb-rpm-volume:/gpdb-rpm
+    extra_hosts:
+      - "sdw1-1=172.28.0.11"
+      - "sdw1-2=172.29.0.11"
+      - "sdw2-1=172.28.0.12"
+      - "sdw2-2=172.29.0.12"
+      - "sdw3-2=172.29.0.13"
+      - "sdw3-1=172.28.0.13"
+
   sdw1:
     hostname: sdw1
     image: gpdb7-multinode-cluster/gpdb-systemd-image
@@ -23,12 +35,23 @@ services:
     restart: always
     tty: true
     networks:
-      - the-network
+      net1:
+        ipv4_address: 172.28.0.11
+      net2:
+        ipv4_address: 172.29.0.11
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - gpdb-src-volume:/gpdb-src
       - gpdb-scripts-volume:/gpdb-scripts
       - gpdb-rpm-volume:/gpdb-rpm
+    extra_hosts:
+      - "sdw1-1=172.28.0.11"
+      - "sdw1-2=172.29.0.11"
+      - "sdw2-1=172.28.0.12"
+      - "sdw2-2=172.29.0.12"
+      - "sdw3-2=172.29.0.13"
+      - "sdw3-1=172.28.0.13"
+
   sdw2:
     hostname: sdw2
     image: gpdb7-multinode-cluster/gpdb-systemd-image
@@ -37,12 +60,23 @@ services:
     restart: always
     tty: true
     networks:
-      - the-network
+      net1:
+        ipv4_address: 172.28.0.12
+      net2:
+        ipv4_address: 172.29.0.12
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - gpdb-src-volume:/gpdb-src
       - gpdb-scripts-volume:/gpdb-scripts
       - gpdb-rpm-volume:/gpdb-rpm
+    extra_hosts:
+      - "sdw1-1=172.28.0.11"
+      - "sdw1-2=172.29.0.11"
+      - "sdw2-1=172.28.0.12"
+      - "sdw2-2=172.29.0.12"
+      - "sdw3-2=172.29.0.13"
+      - "sdw3-1=172.28.0.13"
+
   sdw3:
     hostname: sdw3
     image: gpdb7-multinode-cluster/gpdb-systemd-image
@@ -51,15 +85,38 @@ services:
     restart: always
     tty: true
     networks:
-      - the-network
+      net1:
+        ipv4_address: 172.28.0.13
+      net2:
+        ipv4_address: 172.29.0.13
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - gpdb-src-volume:/gpdb-src
       - gpdb-scripts-volume:/gpdb-scripts
       - gpdb-rpm-volume:/gpdb-rpm
+    extra_hosts:
+      - "sdw1-1=172.28.0.11"
+      - "sdw1-2=172.29.0.11"
+      - "sdw2-1=172.28.0.12"
+      - "sdw2-2=172.29.0.12"
+      - "sdw3-2=172.29.0.13"
+      - "sdw3-1=172.28.0.13"
+
 
 networks:
-  the-network:
+  net1:
+    driver: overlay
+    attachable: true
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+  net2:
+    driver: overlay
+    attachable: true
+    ipam:
+      config:
+        - subnet: 172.29.0.0/16
+
 
 volumes:
   gpdb-src-volume:
