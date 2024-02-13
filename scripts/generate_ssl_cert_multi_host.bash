@@ -15,7 +15,7 @@ while read host; do
     openssl req -newkey rsa:4096 -nodes -keyout ./certificates/server-key.pem -out ./certificates/server-request.pem -subj "/C=US/ST=California/L=Palo Alto/O=Greenplum/OU=GPDB/CN=$host"
 
     # Signed certificate
-    echo "subjectAltName=DNS:$host,DNS:localhost,IP:0.0.0.0" > ./certificates/extensions.conf
+    echo "subjectAltName=DNS:$host,DNS:localhost,DNS:$host-1,DNS:$host-2,IP:0.0.0.0" > ./certificates/extensions.conf
     openssl x509 -req -in ./certificates/server-request.pem -days 365 -CA ./certificates/ca-cert.pem -CAkey ./certificates/ca-key.pem -CAcreateserial -out ./certificates/server-cert.pem -extfile ./certificates/extensions.conf
 
     echo "Copying server cert to /tmp/certificates on $host"

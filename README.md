@@ -50,6 +50,9 @@ This step will create the GPDB hosts (3 containers), build a network
 bridge between the 3 containers, and mount a shared volume (the GPDB 7
 source code and some orchestration scripts from this repository).
 
+Before you can create an overlay network, you need to initialize
+your Docker daemon as a swarm manager using `docker swarm init`.
+
 ```
 # In this repository's top-level dir
 docker-compose up -d

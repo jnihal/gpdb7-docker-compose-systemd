@@ -29,8 +29,11 @@
        "data-directory":"/data/primary/gpseg-1"
     },
     "primary-segments-array":[
-       { "hostname":"sdw1", "address":"sdw1", "port":7002, "data-directory":"/data/primary/gpseg0" },
-       { "hostname":"sdw2", "address":"sdw2", "port":7002, "data-directory":"/data/primary/gpseg1" },
-       { "hostname":"sdw3", "address":"sdw3", "port":7002, "data-directory":"/data/primary/gpseg2" }
+       { "hostname":"sdw1", "address":"sdw1-1", "port":7002, "data-directory":"/data/primary/gpseg0" },
+       { "hostname":"sdw1", "address":"sdw1-2", "port":7003, "data-directory":"/data/primary/gpseg1" },
+       { "hostname":"sdw2", "address":"sdw2-1", "port":7002, "data-directory":"/data/primary/gpseg2" },
+       { "hostname":"sdw2", "address":"sdw2-2", "port":7003, "data-directory":"/data/primary/gpseg3" },
+       { "hostname":"sdw3", "address":"sdw3-1", "port":7002, "data-directory":"/data/primary/gpseg4" },
+       { "hostname":"sdw3", "address":"sdw3-2", "port":7003, "data-directory":"/data/primary/gpseg5" }
     ]
  }
