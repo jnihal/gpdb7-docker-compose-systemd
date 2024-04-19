@@ -24,7 +24,10 @@ make build
 popd
 
 # Install gp binary on all hosts
-gpssh -f /gpdb-scripts/configs/hostfile 'pushd /gpdb-src/gpMgmt/bin/go-tools; make install'
+gp stop services
+gpssh -f /gpdb-scripts/configs/hostfile 'source /usr/local/greenplum-db/greenplum_path.sh pushd /gpdb-src/gpMgmt/bin/go-tools; make install'
+gp configure --hostfile /gpdb-scripts/configs/hostfile --server-certificate /tmp/certificates/server-cert.pem --server-key /tmp/certificates/server-key.pem --ca-certificate /tmp/certificates/ca-cert.pem --ca-key /tmp/certificates/ca-key.pem
+gp start services
 }
 
 EOF
