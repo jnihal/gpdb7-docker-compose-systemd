@@ -1,36 +1,19 @@
 {
-    "encoding":"Unicode",
-    "hba-hostnames":true,
-    "su-password":"gparray",
-    "locale":{
-       "lc-all":"C.UTF-8",
-       "lc-collate":"C.UTF-8",
-       "lc-ctype":"C.UTF-8",
-       "lc-messages":"C.UTF-8",
-       "lc-monetary":"C.UTF-8",
-       "lc-numeric":"C.UTF-8",
-       "lc-time":"C.UTF-8"
+    "hba-hostnames": false,
+    "coordinator": {
+        "hostname": "cdw",
+        "address": "cdw",
+        "port": 7000,
+        "data-directory": "/data/primary/gpseg-1"
     },
-    "common-config":{
-       "shared_buffers":"128000kB"
-    },
-    "coordinator-config":{
-       "max_connections":50
-    },
-    "segment-config":{
-       "max_connections":150,
-       "debug_pretty_print":"off",
-       "log_min_messages":"warning"
-    },
-    "coordinator":{
-       "hostname":"cdw",
-       "address":"cdw",
-       "port":7000,
-       "data-directory":"/data/primary/gpseg-1"
-    },
-    "primary-segments-array":[
-       { "hostname":"sdw1", "address":"sdw1", "port":7002, "data-directory":"/data/primary/gpseg0" },
-       { "hostname":"sdw2", "address":"sdw2", "port":7002, "data-directory":"/data/primary/gpseg1" },
-       { "hostname":"sdw3", "address":"sdw3", "port":7002, "data-directory":"/data/primary/gpseg2" }
+    "primary-base-port": 7002,
+    "mirror-base-port": 8002,
+    "primary-base-directory": "data/primary",
+    "mirror-base-directory": "data/mirror",
+    "contents-per-host": 3,
+    "hostlist": [
+        "sdw1",
+        "sdw2",
+        "sdw3"
     ]
- }
+}
