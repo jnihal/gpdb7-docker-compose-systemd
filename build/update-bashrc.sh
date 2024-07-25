@@ -6,6 +6,8 @@ cat >> /home/gpadmin/.bashrc << EOF
 [ -z "${XDG_RUNTIME_DIR}" ] && export XDG_RUNTIME_DIR=/run/user/$USER_ID
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$USER_ID/bus"
 
+sudo loginctl enable-linger gpadmin
+
 if [ -f /home/gpadmin/env.sh ]; then
     source /home/gpadmin/env.sh
 fi

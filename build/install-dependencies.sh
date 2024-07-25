@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 yum install -y epel-release
-yum install -y emacs-nox net-tools openssh-server openssh-clients passwd iproute procps vim sudo polkit
+yum install -y emacs-nox net-tools openssh-server openssh-clients passwd iproute procps vim sudo polkit nc
 
 pip3 install psutil==5.7.0
 

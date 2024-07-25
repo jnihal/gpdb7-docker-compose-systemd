@@ -7,6 +7,6 @@ make -j8
 
 # Compile gp binary
 cd /gpdb-src/gpMgmt/bin/go-tools
-make build
+make build GOFLAGS="-buildvcs=false"
 
 mkdir -p /data/qddir && chown -R gpadmin:gpadmin /data/qddir
