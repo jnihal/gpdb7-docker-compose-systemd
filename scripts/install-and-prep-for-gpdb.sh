@@ -41,16 +41,13 @@ if [ $1 == "rpm" ]; then
     chown -R gpadmin:gpadmin /usr/local/greenplum-db-*
 else
     cd /gpdb-src
+    export GOFLAGS="-buildvcs=false"
     make install
 fi
 
 # Source GPDB and install pygresql
 source /usr/local/greenplum-db/greenplum_path.sh
 pip3 install psycopg2-binary
-
-# Install gp binary
-cd /gpdb-src/gpMgmt/bin/go-tools
-make install GOFLAGS="-buildvcs=false"
 
 chown -R gpadmin:gpadmin /usr/local/greenplum-db/
 mkdir -p /data/primary /data/mirror && chown -R gpadmin:gpadmin /data/primary /data/mirror
